@@ -26,7 +26,7 @@ import socket
 import stat
 from distutils.spawn import find_executable
 
-WIN_PYTHON27_PATH = 'C:\python27\pythonw.exe'
+WIN_PYTHON27_PATH = 'C:\python27\python.exe'
 WIN_PYTHON26_PATH = 'C:\python26\pythonw.exe'
 
 
@@ -85,8 +85,9 @@ def PathToPythonInterpreter():
   # We check for 'python2' before 'python' because some OS's (I'm looking at you
   # Arch Linux) have made the... interesting decision to point /usr/bin/python
   # to python3.
-  path_to_python = PathToFirstExistingExecutable(
-    [ 'pythonw', 'python2', 'python' ] )
+  #path_to_python = PathToFirstExistingExecutable(
+    #[ 'pythonw', 'python2', 'python' ] )
+  path_to_python = None
   if path_to_python:
     return path_to_python
 
@@ -98,7 +99,6 @@ def PathToPythonInterpreter():
     elif os.path.exists( WIN_PYTHON26_PATH ):
       return WIN_PYTHON26_PATH
   raise RuntimeError( 'Python 2.7/2.6 not installed!' )
-
 
 def PathToFirstExistingExecutable( executable_name_list ):
   for executable_name in executable_name_list:
